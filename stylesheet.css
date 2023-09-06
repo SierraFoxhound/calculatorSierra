@@ -1,0 +1,61 @@
+body {
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Yellowtail', cursive;
+    min-height: 100vh;
+    /*background-color: brown;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    color: #F2F2F2;
+}
+
+.calcContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    padding: 5px;
+    min-width: 10em;
+    background-color: #161616;
+}
+
+.displayContainer {
+    border-style: solid;
+    border-color:blueviolet;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 200px;
+    max-height: 50px;
+}
+
+.display {
+    /*background-color:antiquewhite;*/
+    font-size: 40px;
+    max-width: 200px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em;
+    border-style: solid;
+    border-color: blue;
+    
+    max-width: 210px;
+
+}
+
+.buttonContainer button {
+    font-size: 15px;
+    background-color: #2e2d2d;
+    color: #F2F2F2;
+    border-radius: 7px;
+    width: 50px;
+    height: 50px;
+    margin: 1px;
+}
