@@ -1,4 +1,7 @@
 const results = document.querySelector("#Result");
+let clearEntryBtn = document.querySelector(".clearEntryBtn");
+let clearBtn = document.querySelector(".clearBtn");
+let delBtn = document.querySelector(".delBtn");
 let displayContainer = document.querySelector(".displayContainer")
 let display = document.querySelector(".display");
 let buttonContainer = document.querySelector(".buttonContainer");
@@ -16,6 +19,7 @@ let threeBtn = document.querySelector(".threeBtn");
 let subtractBtn = document.querySelector(".subtractBtn");
 let clear = document.querySelector(".clear");
 let zeroBtn = document.querySelector(".zeroBtn");
+let decimalBtn = document.querySelector(".decimalBtn");
 let equalBtn = document.querySelector(".equalBtn");
 let addBtn = document.querySelector(".addBtn");
 
@@ -53,7 +57,16 @@ function operate(num1, op, num2) {
 }
 
 //console.log(operate(1, '-', 4));
+//Keep track of first number
+let isFirstNumber = true;
 
+function updateDisplay() {
+    if (isFirstNumber) {
+        display.textContent = displayValue;
+    } else {
+        display.text = `${displayValue} ${operator}`
+    }
+}
 //Display variable
 let displayValue = "0";
 
@@ -61,13 +74,16 @@ function updateDisplaynumber(number) {
     if (displayValue === "0") {
         displayValue = number.toString();//converts 0 to a string
     } else {
-        //the + allows us to spam 1 multiply of times while also converting to string
+        //the + allows us to spam 1 multiple of times while also converting to string
         displayValue += number.toString();
     }
     display.textContent = displayValue;//displays the number
 }
 
 //print button numbers
+decimalBtn.addEventListener('click', () => {
+    updateDisplaynumber('.');
+});
 zeroBtn.addEventListener('click', () => {
     updateDisplaynumber(0);
 });
