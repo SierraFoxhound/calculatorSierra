@@ -1,4 +1,4 @@
-const results = document.querySelector("#Result");
+
 let clearEntryBtn = document.querySelector(".clearEntryBtn");
 let clearBtn = document.querySelector(".clearBtn");
 let delBtn = document.querySelector(".delBtn");
@@ -17,7 +17,6 @@ let oneBtn = document.querySelector(".oneBtn");
 let twoBtn = document.querySelector(".twoBtn");
 let threeBtn = document.querySelector(".threeBtn");
 let subtractBtn = document.querySelector(".subtractBtn");
-let clear = document.querySelector(".clear");
 let zeroBtn = document.querySelector(".zeroBtn");
 let decimalBtn = document.querySelector(".decimalBtn");
 let equalBtn = document.querySelector(".equalBtn");
@@ -57,62 +56,72 @@ function operate(num1, op, num2) {
 }
 
 //console.log(operate(1, '-', 4));
-//Keep track of first number
-let isFirstNumber = true;
 
-function updateDisplay() {
-    if (isFirstNumber) {
-        display.textContent = displayValue;
-    } else {
-        display.text = `${displayValue} ${operator}`
-    }
-}
 //Display variable
 let displayValue = "0";
 
-function updateDisplaynumber(number) {
-    if (displayValue === "0") {
-        displayValue = number.toString();//converts 0 to a string
+function updateDisplaynumber(input) {
+    //Check if input is a decimal point
+    if(input === '.') {
+        // If displayValue already contains a decimal point, ignore the input
+        if(!displayValue.includes('.')) {
+            displayValue += input;
+        }
     } else {
-        //the + allows us to spam 1 multiple of times while also converting to string
-        displayValue += number.toString();
+        if(displayValue === "0") {
+            displayValue = input.toString();//converts 0 to a string
+        } else {
+            //the + allows us to spam 1 multiple of times while also converting to string
+            displayValue += input.toString();
+        }
+        //display.textContent = displayValue;//displays the number
     }
-    display.textContent = displayValue;//displays the number
 }
 
 //print button numbers
 decimalBtn.addEventListener('click', () => {
     updateDisplaynumber('.');
+    display.textContent += '.';
 });
 zeroBtn.addEventListener('click', () => {
     updateDisplaynumber(0);
+    display.textContent += '0';
 });
 oneBtn.addEventListener('click', () => {
     updateDisplaynumber(1);
+    display.textContent += '1';
 });
 twoBtn.addEventListener('click', () => {
     updateDisplaynumber(2);
+    display.textContent += '2';
 });
 threeBtn.addEventListener('click', () => {
     updateDisplaynumber(3);
+    display.textContent += '3';
 });
 fourBtn.addEventListener('click', () => {
     updateDisplaynumber(4);
+    display.textContent += '4';
 });
 fiveBtn.addEventListener('click', () => {
     updateDisplaynumber(5);
+    display.textContent += '5';
 });
 sixBtn.addEventListener('click', () => {
     updateDisplaynumber(6);
+    display.textContent += '6';
 });
 sevenBtn.addEventListener('click', () => {
     updateDisplaynumber(7);
+    display.textContent += '7';
 });
 eightBtn.addEventListener('click', () => {
     updateDisplaynumber(8);
+    display.textContent += '8';
 });
 nineBtn.addEventListener('click', () => {
     updateDisplaynumber(9);
+    display.textContent += '9';
 });
 
 //functions for operator buttons
@@ -126,26 +135,40 @@ function handleOperatorClick(op) {
         displayValue = "0";
         console.log(firstOperand);
     } else {
-        //calculate and display result
-        firstOperand = operate(firstOperand, operator, parseFloat(displayValue));
-        operator = op;
-        display.textContent = firstOperand;//result
-        displayValue = "0";
-        console.log(firstOperand);
+        if (op === '/' && parseFloat(firstOperand) === 0 && parseFloat(displayValue) === 0) {
+            //
+            display.textContent = "Error";
+            displayValue = "0";
+            firstOperand = null;
+            operator = null;
+
+        } else {
+            //calculate and display result
+            firstOperand = operate(firstOperand, operator, parseFloat(displayValue));
+            operator = op;
+            display.textContent = firstOperand;//result
+            displayValue = "0";
+        //console.log(firstOperand);
+        }
+
     }
 }
 
 addBtn.addEventListener('click', () => {
     handleOperatorClick('+');
+    display.textContent += '+';
 });
 subtractBtn.addEventListener('click', () => {
     handleOperatorClick('-');
+    display.textContent += '-';
 });
 multiplyBtn.addEventListener('click', () => {
     handleOperatorClick('*');
+    display.textContent += '*';
 });
 divideBtn.addEventListener('click', () => {
     handleOperatorClick('/');
+    display.textContent += '/';
 });
 
 //eventListener/function for the equal button
@@ -154,7 +177,32 @@ equalBtn.addEventListener('click', () => {
     if (operator !== null) {
         firstOperand = operate(firstOperand, operator, parseFloat(displayValue));
         display.textContent = firstOperand;
-        displayValue = '0';
-        //operator = null;
+        displayValue = '0';//allows result to be used
+        operator = '+';
+        console.log(firstOperand);
     }
+});
+
+function clearCalculator() {
+    displayValue = " ";
+    operator = null;
+    firstOperand = null;
+    display.textContent = displayValue;
+}
+
+clearBtn.addEventListener('click', () => {
+    clearCalculator();
+});
+
+
+//incomplete backspace button
+
+function backspace() {
+    displayValue = displayValue.slice(0, -1)
+    display.textContent = displayValue;
+}
+
+delBtn.addEventListener('click', () => {
+    backspace();
+
 });

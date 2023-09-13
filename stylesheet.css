@@ -2,12 +2,11 @@ body {
     font-family: 'Source Code Pro', monospace;
     font-family: 'Yellowtail', cursive;
     min-height: 100vh;
-    /*background-color: brown;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    background-color: #B5C7CC;
     color: #F2F2F2;
 }
 
@@ -16,26 +15,33 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-style: solid;
-    border-color: red;
-    border-width: 1px;
-    padding: 5px;
+    /*border-style: solid;
+    /*border-color: red;
+    border-width: 1px;*/
+    padding: 20px 5px 5px 5px;
     min-width: 10em;
-    background-color: #161616;
+    background-color: #244C66;
+    border-radius: 10px;
 }
 
 .displayContainer {
-    border-style: solid;
-    border-color:blueviolet;
+    /*border-style: solid;
+    /*border-color:blueviolet;*/
+    background-color: #8BA1AD;
+    border-radius: 5px;
     display: flex;
     justify-content: flex-end;
     min-width: 200px;
+    min-height: 50px;
     max-height: 50px;
+    
 }
 
 .display {
     /*background-color:antiquewhite;*/
     font-size: 40px;
+    white-space: nowrap;
+    overflow: hidden;
     max-width: 200px;
 }
 
@@ -43,8 +49,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 1em;
-    border-style: solid;
-    border-color: blue;
+    /*border-style: solid;
+    border-color: blue;*/
     
     max-width: 210px;
 
@@ -52,10 +58,43 @@ body {
 
 .buttonContainer button {
     font-size: 15px;
-    background-color: #2e2d2d;
+    background-color: #8BA1AD;
     color: #F2F2F2;
     border-radius: 7px;
     width: 50px;
     height: 50px;
     margin: 1px;
+    /*box-shadow: -8px -8px 15px rgba(255,255,255, 0.1), 5px 5px 15px rgb(0, 0, 0, 0.2);*/
+}
+
+.buttonContainer button:active{
+    background-color: #587B89;
+}
+
+.buttonContainer .clearBtn {
+    width: 100px;
+}
+.buttonContainer .equalBtn {
+    width: 100px;
+}
+
+.buttonContainer .clearBtn, 
+.buttonContainer .delBtn, 
+.buttonContainer .divideBtn, 
+.buttonContainer .multiplyBtn, 
+.buttonContainer .subtractBtn, 
+.buttonContainer .addBtn, 
+.buttonContainer .equalBtn{
+    background-color: #587B89;
+}
+
+/*on click the operator buttons change to a lighter tone*/
+.buttonContainer .clearBtn:active,
+.buttonContainer .delBtn:active,
+.buttonContainer .divideBtn:active,
+.buttonContainer .multiplyBtn:active,
+.buttonContainer .subtractBtn:active,
+.buttonContainer .addBtn:active,
+.buttonContainer .equalBtn:active {
+    background-color: #8BA1AD;
 }
