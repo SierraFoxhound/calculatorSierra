@@ -1,6 +1,4 @@
 body {
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Yellowtail', cursive;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
